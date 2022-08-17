@@ -19,6 +19,17 @@ namespace Business.Concrete
             _questionDal = questionDal;
         }
 
+        public void AddQuestion(AddQuestionDTO addQuestion)
+        {
+            Question newQuestion = new()
+            {
+                Description = addQuestion.Description,
+                PhotoUrl = addQuestion.PhotoUrl,
+                Title = addQuestion.Title,
+                UserId = addQuestion.UserId
+            };
+            _questionDal.Add(newQuestion);
+        }
         public Question GetQuestion(int id)
         {
             return _questionDal.Get(x=>x.Id == id);
@@ -26,54 +37,8 @@ namespace Business.Concrete
 
         public List<QuestionsDTO> GetQuestions()
         {
-            List<QuestionsDTO> result = new()
-            {
-                new QuestionsDTO()
-                {
-                    Id = 1,
-                    Title = "Lorem Ipsum is simply dummy text",
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    Hit = 0,
-                    Likes = 0,
-                    PhotoUrl = "https://cdn.pixabay.com/photo/2016/03/27/18/54/technology-1283624_960_720.jpg",
-                    Comments = 0,
-                    Username = "Lorem Ipsum"
-                },
-                new QuestionsDTO()
-                {
-                    Id = 2,
-                    Title = "Lorem Ipsum is simply dummy text",
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    Hit = 0,
-                    Likes = 0,
-                    PhotoUrl = "https://cdn.pixabay.com/photo/2016/03/27/18/54/technology-1283624_960_720.jpg",
-                    Comments = 0,
-                    Username = "Lorem Ipsum"
-                },
-                new QuestionsDTO()
-                {
-                    Id = 3,
-                    Title = "Lorem Ipsum is simply dummy text",
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    Hit = 0,
-                    Likes = 0,
-                    PhotoUrl = "https://cdn.pixabay.com/photo/2016/03/27/18/54/technology-1283624_960_720.jpg",
-                    Comments = 0,
-                    Username = "Lorem Ipsum"
-                },
-                new QuestionsDTO()
-                {
-                    Id = 4,
-                    Title = "Lorem Ipsum is simply dummy text",
-                    Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    Hit = 0,
-                    Likes = 0,
-                    PhotoUrl = "https://cdn.pixabay.com/photo/2016/03/27/18/54/technology-1283624_960_720.jpg",
-                    Comments = 0,
-                    Username = "Lorem Ipsum"
-                },
-            };
-            return result;
+            
+            return _questionDal.GetAllQuestions();
         }
     }
 }

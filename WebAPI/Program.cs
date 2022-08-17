@@ -16,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IQuestionDal, QuestionDal>();
 builder.Services.AddScoped<IQuestionServices, QuestionServices>();
 
+builder.Services.AddScoped<IUserDal, UserDal>();
+builder.Services.AddScoped<IUserServices, UserServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

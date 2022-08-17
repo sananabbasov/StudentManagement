@@ -1,6 +1,5 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
-using Entities.DTOs;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IQuestionDal : IRepositoryBase<Question>
+    public interface IUserDal : IRepositoryBase<User>
     {
-        List<QuestionsDTO> GetAllQuestions();
     }
 }

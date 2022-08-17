@@ -13,8 +13,8 @@ namespace Core.Entities.Concrete
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string PasswordSalt { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public bool ConfirmEmail { get; set; }
         public DateTime RegisterDate { get; set; }
         public int LoginAttempt { get; set; }
