@@ -11,6 +11,7 @@ namespace Business.Abstract
     public interface IUserServices
     {
         void Register(RegisterDTO user);
-
+        UserDTO Login(LoginDTO user);
+        List<User> GetAllUser();
     }
 }

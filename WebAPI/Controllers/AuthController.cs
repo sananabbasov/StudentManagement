@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,29 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("Qeydiyyat zamani xeta bas verdi. Yeniden cehd edin.");
             }
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(LoginDTO loginDTO)
+        {
+            try
+            {
+               var user = _userServices.Login(loginDTO);
+                return Ok(new {status= 200, message= user });
+            }
+            catch (Exception)
+            {
+                return BadRequest("Login zamani xeta bas verdi. Yeniden cehd edin.");
+            }
+        }
+
+
+        [Authorize]
+        [HttpGet("getallusers")]
+        public IActionResult GetUsers()
+        {
+            var users = _userServices.GetAllUser();
+            return Ok(new { status = 200, message = users });
         }
     }
 }
