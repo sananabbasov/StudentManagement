@@ -10,7 +10,8 @@ namespace Business.Abstract
 {
     public interface IQuestionServices
     {
-        void AddQuestion(AddQuestionDTO addQuestion);
+        void AddQuestion(AddQuestionDTO addQuestion, string email);
+        QuestionDetailDTO GetQuestionDetail(int id);
         Question GetQuestion(int id);
         List<QuestionsDTO> GetQuestions();
     }

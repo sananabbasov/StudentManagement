@@ -13,26 +13,35 @@ namespace Business.Concrete
     public class QuestionServices : IQuestionServices
     {
         private readonly IQuestionDal _questionDal;
+        private readonly IUserServices _userServices;
 
-        public QuestionServices(IQuestionDal questionDal)
+        public QuestionServices(IQuestionDal questionDal, IUserServices userServices)
         {
             _questionDal = questionDal;
+            _userServices = userServices;
         }
 
-        public void AddQuestion(AddQuestionDTO addQuestion)
+        public void AddQuestion(AddQuestionDTO addQuestion, string email)
         {
+
+            var user = _userServices.GetUserByEmail(email);
             Question newQuestion = new()
             {
                 Description = addQuestion.Description,
                 PhotoUrl = addQuestion.PhotoUrl,
                 Title = addQuestion.Title,
-                UserId = addQuestion.UserId
+                UserId = user.Id,
             };
             _questionDal.Add(newQuestion);
         }
         public Question GetQuestion(int id)
         {
             return _questionDal.Get(x=>x.Id == id);
+        }
+
+        public QuestionDetailDTO GetQuestionDetail(int id)
+        {
+            return _questionDal.GetQuestionDetail(id);
         }
 
         public List<QuestionsDTO> GetQuestions()

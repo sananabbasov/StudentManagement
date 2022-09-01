@@ -13,5 +13,6 @@ namespace Business.Abstract
         void Register(RegisterDTO user);
         UserDTO Login(LoginDTO user);
         List<User> GetAllUser();
+        User GetUserByEmail(string email);
     }
 }

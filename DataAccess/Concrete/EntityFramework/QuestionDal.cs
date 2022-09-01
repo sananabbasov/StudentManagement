@@ -38,5 +38,37 @@ namespace DataAccess.Concrete.EntityFramework
             return questionsDTOList;
 
         }
+
+        public QuestionDetailDTO GetQuestionDetail(int id)
+        {
+            using var _context = new AppDbContext();
+            var question = _context.Questions.Include(x=>x.User).FirstOrDefault(x => x.Id == id);
+            var comments = _context.Comments.Include(x=>x.User).Where(x => x.QuestionId == id).ToList();
+            List<CommentDTO> questionComments = new();
+            foreach (var comment in comments)
+            {
+                CommentDTO commentDTO = new()
+                {
+                    Id = comment.Id,
+                    Message = comment.Message,
+                    UserName = comment.User.Name
+                };
+                questionComments.Add(commentDTO);
+            }
+
+            QuestionDetailDTO detailDTO = new()
+            {
+                Id = question.Id,
+                Title = question.Title,
+                Description = question.Description,
+                Username = question.User.Name,
+                Hit = question.Hit,
+                Likes = question.Likes,
+                PhotoUrl = question.PhotoUrl,
+                Comments = questionComments
+            };
+
+            return detailDTO;
+        }
     }
 }

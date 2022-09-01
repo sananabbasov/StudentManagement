@@ -46,6 +46,9 @@ builder.Services.AddScoped<IQuestionServices, QuestionServices>();
 builder.Services.AddScoped<IUserDal, UserDal>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 
+builder.Services.AddScoped<ICommentDal, CommentDal>();
+builder.Services.AddScoped<ICommentServices, CommentServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

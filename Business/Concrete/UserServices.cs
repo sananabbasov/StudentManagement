@@ -26,6 +26,11 @@ namespace Business.Concrete
             return _userDal.GetAll();
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userDal.Get(x => x.Email == email);
+        }
+
         public UserDTO Login(LoginDTO user)
         {
             var findUser = _userDal.Get(x => x.Email == user.Email);
